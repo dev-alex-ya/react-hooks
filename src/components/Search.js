@@ -1,9 +1,11 @@
 import React, {useContext, useState} from 'react';
 import {AlertContext} from '../context/alert/alertContext';
+import {GithubContext} from '../context/github/githubContext';
 
 export const Search = () => {
   const [value, setValue] = useState('');
   const {show} = useContext(AlertContext);
+  const github = useContext(GithubContext);
 
   const onSubmit = (event) => {
     // если нажат не enter, то ничего не делаем
@@ -12,7 +14,7 @@ export const Search = () => {
     }
 
     if (value.trim()) {
-      console.log(value.trim())
+      github.search(value.trim());
     } else {
       show('Введите данные пользователя!')
     }
